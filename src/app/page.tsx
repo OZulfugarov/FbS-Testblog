@@ -1,10 +1,9 @@
 'use client';
 
-import {Card, CardContent, CardDescription, CardHeader, CardTitle} from '@/components/ui/card';
-import {Sidebar} from '@/components/ui/sidebar';
 import {Button} from '@/components/ui/button';
-import {useEffect, useState} from 'react';
+import {Sidebar} from '@/components/ui/sidebar';
 import {useRouter} from 'next/navigation';
+import {useEffect, useState} from 'react';
 
 interface BlogPost {
   id: string;
@@ -54,24 +53,19 @@ export default function Home() {
       <main className="container mx-auto py-10 flex-1">
         <section className="mb-8">
           <h1 className="text-3xl font-bold mb-4">Blog Posts</h1>
-          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          <div>
             {blogPosts.map((post) => (
-              <Card key={post.id} className="bg-card text-card-foreground shadow-md">
-                <CardHeader>
-                  <CardTitle>{post.title}</CardTitle>
-                  <CardDescription>{post.date}</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  {post.content.substring(0, 100)}...
-                  <Button
-                    variant="link"
-                    className="mt-2"
-                    onClick={() => handleViewPost(post.id)}
-                  >
-                    Read More
-                  </Button>
-                </CardContent>
-              </Card>
+              <div
+                key={post.id}
+                className="mb-4 p-4 border rounded-md shadow-md bg-card text-card-foreground"
+              >
+                <h2 className="text-xl font-semibold">{post.title}</h2>
+                <p className="text-sm text-muted-foreground">{post.date}</p>
+                <p className="mt-2">{post.content.substring(0, 100)}...</p>
+                <Button variant="link" className="mt-2" onClick={() => handleViewPost(post.id)}>
+                  Read More
+                </Button>
+              </div>
             ))}
           </div>
         </section>
@@ -79,4 +73,3 @@ export default function Home() {
     </div>
   );
 }
-
