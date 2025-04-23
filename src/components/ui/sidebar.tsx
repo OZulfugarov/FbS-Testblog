@@ -4,11 +4,12 @@ import Link from 'next/link';
 import {usePathname} from 'next/navigation';
 import {Avatar, AvatarFallback, AvatarImage} from './avatar';
 import {cn} from '@/lib/utils';
+import { Home, FileText, ListChecks } from "lucide-react";
 
 const navigation = [
-  {name: 'Blog', href: '/'},
-  {name: 'CV', href: '/cv'},
-  {name: 'Projects', href: '/projects'},
+  {name: 'Blog', href: '/', icon: Home},
+  {name: 'CV', href: '/cv', icon: FileText},
+  {name: 'Projects', href: '/projects', icon: ListChecks},
 ];
 
 export function Sidebar() {
@@ -32,12 +33,13 @@ export function Sidebar() {
               <Link
                 href={item.href}
                 className={cn(
-                  'block px-4 py-2 rounded-md hover:bg-accent',
+                  'flex items-center px-4 py-2 rounded-md hover:bg-accent',
                   pathname === item.href
                     ? 'bg-accent text-foreground font-medium'
                     : 'text-muted-foreground'
                 )}
               >
+                {item.icon && <item.icon className="mr-2 h-4 w-4" />}
                 {item.name}
               </Link>
             </li>

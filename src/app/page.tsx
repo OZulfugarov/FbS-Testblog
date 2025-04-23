@@ -57,7 +57,7 @@ export default function Home() {
             {blogPosts.map((post) => (
               <div
                 key={post.id}
-                className="mb-4 p-4 border rounded-md shadow-md bg-card text-card-foreground"
+                className="mb-4 p-4 rounded-md shadow-md bg-card text-card-foreground"
               >
                 <h2 className="text-xl font-semibold">{post.title}</h2>
                 <p className="text-sm text-muted-foreground">{post.date}</p>
