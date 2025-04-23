@@ -4,6 +4,7 @@ import {Button} from '@/components/ui/button';
 import {Sidebar} from '@/components/ui/sidebar';
 import {useRouter} from 'next/navigation';
 import {useEffect, useState} from 'react';
+import {format} from 'date-fns';
 
 interface BlogPost {
   id: string;
@@ -16,19 +17,19 @@ const mockBlogPosts: BlogPost[] = [
   {
     id: '1',
     title: 'First Post',
-    date: '2024-01-01',
+    date: '2024-01-01T12:00:00',
     content: 'This is the content of the first post.',
   },
   {
     id: '2',
     title: 'Second Post',
-    date: '2024-01-05',
+    date: '2024-01-05T14:30:00',
     content: 'This is the content of the second post.',
   },
   {
     id: '3',
     title: 'Third Post',
-    date: '2024-01-10',
+    date: '2024-01-10T08:45:00',
     content: 'This is the content of the third post.',
   },
 ];
@@ -60,7 +61,9 @@ export default function Home() {
                 className="mb-4 p-4 rounded-md shadow-md bg-card text-card-foreground"
               >
                 <h2 className="text-xl font-semibold">{post.title}</h2>
-                <p className="text-sm text-muted-foreground">{post.date}</p>
+                <p className="text-sm text-muted-foreground">
+                  {format(new Date(post.date), 'MMMM d, yyyy - h:mm a')}
+                </p>
                 <p className="mt-2">{post.content.substring(0, 100)}...</p>
                 <Button variant="link" className="mt-2" onClick={() => handleViewPost(post.id)}>
                   Read More
